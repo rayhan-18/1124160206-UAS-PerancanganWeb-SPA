@@ -42,5 +42,66 @@
     <p class="text-xs opacity-70">(NIM: 1124160206) - (Nama: Muhamad Rayhan)</p>
     <button id="darkModeToggle" class="mt-4 px-5 py-2 bg-primary dark:bg-accent text-white rounded-full text-sm font-semibold hover:opacity-90 transition-transform">Toggle Tema ☀️ / 🌙</button>
   </header>
+
+  <!-- Main Content -->
+  <main class="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 px-6 py-10">
+    <!-- Form Pembayaran -->
+    <section class="bg-[#ffcce0] dark:bg-zinc-800 rounded-2xl p-6 shadow-md">
+      <h2 class="text-xl font-semibold mb-6 text-primary dark:text-accent">Form Pembayaran</h2>
+      <form id="paymentForm" class="space-y-4">
+        <input type="text" id="customerName" placeholder="Nama Pelanggan" required class="w-full px-4 py-3 rounded-md bg-[#ffd6e8] dark:bg-zinc-700 border" />
+        <input type="email" id="customerEmail" placeholder="Email" required class="w-full px-4 py-3 rounded-md bg-[#ffd6e8] dark:bg-zinc-700 border" />
+        <select id="productSelect" required class="w-full px-4 py-3 rounded-md bg-[#ffd6e8] dark:bg-zinc-700 border">
+          <option value="">Pilih produk...</option>
+          <option value="basic" data-price="15000">Es Teh Manis - Rp 15.000</option>
+          <option value="premium" data-price="18000">Milk Tea Brown Sugar - Rp 18.000</option>
+          <option value="professional" data-price="20000">Yakult Lemon Tea - Rp 20.000</option>
+          <option value="enterprise" data-price="25000">Red Velvet Cheese - Rp 25.000</option>
+        </select>
+        <input type="number" id="quantity" min="1" value="1" required class="w-full px-4 py-3 rounded-md bg-[#ffd6e8] dark:bg-zinc-700 border" />
+
+        <fieldset class="space-y-2">
+          <legend class="text-sm font-medium">Metode Pembayaran</legend>
+          <div class="flex flex-col space-y-1">
+            <label><input type="radio" name="paymentMethod" value="transfer" required /> Transfer Bank</label>
+            <label><input type="radio" name="paymentMethod" value="ewallet" /> E-Wallet</label>
+            <label><input type="radio" name="paymentMethod" value="credit" /> Kartu Kredit</label>
+            <label><input type="radio" name="paymentMethod" value="cash" /> Tunai</label>
+          </div>
+        </fieldset>
+
+        <div class="flex gap-2">
+          <input type="text" id="promoCode" placeholder="Kode Promo (Opsional)" class="flex-1 px-4 py-3 rounded-md bg-[#ffd6e8] dark:bg-zinc-700 border" />
+          <button type="button" id="applyPromoBtn" class="bg-accent hover:bg-yellow-400 text-white px-4 py-2 rounded-md font-medium">Terapkan</button>
+        </div>
+        <p id="promoMessage" class="hidden mt-2 text-sm"></p>
+
+        <div class="bg-[#ffb3c6] dark:bg-zinc-700 rounded-md p-4">
+          <div class="flex justify-between text-sm"><span>Subtotal:</span><span id="subtotal">Rp 0</span></div>
+          <div id="discountRow" class="flex justify-between text-sm text-green-500 hidden"><span>Diskon:</span><span id="discount">Rp 0</span></div>
+          <div class="flex justify-between font-semibold border-t pt-2"><span>Total:</span><span id="totalAmount">Rp 0</span></div>
+        </div>
+
+        <button type="submit" class="w-full py-3 bg-gradient-to-r from-primary to-pink-600 dark:from-accent dark:to-yellow-400 hover:opacity-90 text-white rounded-xl text-sm font-semibold shadow">Proses Pembayaran</button>
+      </form>
+    </section>
+
+    <!-- Riwayat Transaksi -->
+    <section class="bg-[#ffcce0] dark:bg-zinc-800 rounded-2xl p-6 shadow-md">
+      <h2 class="text-xl font-semibold mb-6 text-primary dark:text-accent">Riwayat Transaksi</h2>
+      <div class="grid grid-cols-3 gap-4 text-center mb-6">
+        <div><div id="totalTransactions" class="text-2xl font-bold">0</div><div class="text-sm">Transaksi</div></div>
+        <div><div id="totalRevenue" class="text-2xl font-bold">Rp 0</div><div class="text-sm">Pendapatan</div></div>
+        <div><div id="avgTransaction" class="text-2xl font-bold">Rp 0</div><div class="text-sm">Rata-rata</div></div>
+      </div>
+      <div id="transactionList" class="space-y-3 max-h-96 overflow-y-auto">
+        <div id="emptyState" class="text-center py-8 text-gray-500">
+          <p class="font-medium">Belum ada transaksi</p>
+          <p class="text-sm">Lakukan pembayaran pertama Anda!</p>
+        </div>
+      </div>
+      <button id="clearHistoryBtn" class="mt-4 px-4 py-2 bg-red-600 text-white rounded-md text-sm font-medium hidden">Hapus Riwayat</button>
+    </section>
+  </main>
 </body>
 </html>
