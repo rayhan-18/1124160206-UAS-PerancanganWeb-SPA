@@ -1,11 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Open Payment Portal</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Open Payment Portal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#ff0066',
+            accent: '#ffd700',
+            surfaceDark: '#1c1c1c'
+          },
+          fontFamily: {
+            sans: ['Poppins', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    @keyframes fade-in {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in { animation: fade-in 0.4s ease-out; }
+  </style>
 </head>
-<body>
-    
+
+<body class="bg-gradient-to-br from-[#ffdce6] via-[#ffc1d6] to-[#ff99bf] dark:bg-surfaceDark text-gray-900 dark:text-gray-100 font-sans transition-colors duration-300">
+
+      <!-- Header -->
+  <header class="flex flex-col items-center text-center py-10 px-4 bg-[#ffcce0] dark:bg-zinc-900 shadow-sm rounded-b-3xl">
+    <img src="assets/me.jpg" alt="Foto Profil" class="w-20 h-20 rounded-full object-cover ring-4 ring-white dark:ring-zinc-700 shadow-lg mb-4" />
+    <h1 class="text-3xl font-bold text-primary dark:text-accent tracking-wide">Open Payment Portal</h1>
+    <p class="text-sm font-medium opacity-80">Global Instituted</p>
+    <p class="text-xs opacity-70">(NIM: 1124160206) - (Nama: Muhamad Rayhan)</p>
+    <button id="darkModeToggle" class="mt-4 px-5 py-2 bg-primary dark:bg-accent text-white rounded-full text-sm font-semibold hover:opacity-90 transition-transform">Toggle Tema ☀️ / 🌙</button>
+  </header>
 </body>
 </html>
