@@ -29,9 +29,36 @@
       to { opacity: 1; transform: translateY(0); }
     }
     .animate-fade-in { animation: fade-in 0.4s ease-out; }
+
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      #successModal, #successModal * {
+        visibility: visible;
+      }
+      #successModal {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: white !important;
+        color: black !important;
+        padding: 1cm;
+        box-shadow: none;
+      }
+      #progressBar,
+      #closeSuccessModal,
+      #printInvoiceBtn,
+      header,
+      main,
+      template,
+      script {
+        display: none !important;
+      }
+    }
   </style>
 </head>
-
 <body class="bg-gradient-to-br from-[#ffdce6] via-[#ffc1d6] to-[#ff99bf] dark:bg-surfaceDark text-gray-900 dark:text-gray-100 font-sans transition-colors duration-300">
 
       <!-- Header -->
@@ -149,6 +176,7 @@
       </div>
     </div>
   </div>
-  
+
+    <script src="script.js"></script>
 </body>
 </html>
