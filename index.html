@@ -31,12 +31,8 @@
     .animate-fade-in { animation: fade-in 0.4s ease-out; }
 
     @media print {
-      body * {
-        visibility: hidden;
-      }
-      #successModal, #successModal * {
-        visibility: visible;
-      }
+      body * { visibility: hidden; }
+      #successModal, #successModal * { visibility: visible; }
       #successModal {
         position: absolute;
         top: 0;
@@ -61,7 +57,7 @@
 </head>
 <body class="bg-gradient-to-br from-[#ffdce6] via-[#ffc1d6] to-[#ff99bf] dark:bg-surfaceDark text-gray-900 dark:text-gray-100 font-sans transition-colors duration-300">
 
-      <!-- Header -->
+  <!-- Header -->
   <header class="flex flex-col items-center text-center py-10 px-4 bg-[#ffcce0] dark:bg-zinc-900 shadow-sm rounded-b-3xl">
     <img src="assets/me.jpg" alt="Foto Profil" class="w-20 h-20 rounded-full object-cover ring-4 ring-white dark:ring-zinc-700 shadow-lg mb-4" />
     <h1 class="text-3xl font-bold text-primary dark:text-accent tracking-wide">Open Payment Portal</h1>
@@ -109,7 +105,7 @@
           <div class="flex justify-between font-semibold border-t pt-2"><span>Total:</span><span id="totalAmount">Rp 0</span></div>
         </div>
 
-        <button type="submit" class="w-full py-3 bg-gradient-to-r from-primary to-pink-600 dark:from-accent dark:to-yellow-400 hover:opacity-90 text-white rounded-xl text-sm font-semibold shadow">Proses Pembayaran</button>
+        <button type="submit" id="submitBtn" disabled class="w-full py-3 bg-gradient-to-r from-primary to-pink-600 dark:from-accent dark:to-yellow-400 text-white rounded-xl text-sm font-semibold shadow opacity-50 cursor-not-allowed">Proses Pembayaran</button>
       </form>
     </section>
 
@@ -177,6 +173,6 @@
     </div>
   </div>
 
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

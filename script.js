@@ -18,6 +18,7 @@ const totalTransactionsEl = document.getElementById("totalTransactions");
 const totalRevenueEl = document.getElementById("totalRevenue");
 const avgTransactionEl = document.getElementById("avgTransaction");
 const transactionTemplate = document.getElementById("transactionTemplate");
+const submitBtn = document.getElementById("submitBtn");
 
 // ========== Modal ==========
 const successModal = document.getElementById("successModal");
@@ -62,9 +63,36 @@ function updateTotal() {
   return { subtotal, discount, total };
 }
 
-// ========== Event: Update Harga ==========
-productSelect.addEventListener("change", updateTotal);
-quantityInput.addEventListener("input", updateTotal);
+// ========== Validasi Form ==========
+function validateFormFields() {
+  const name = form.customerName.value.trim();
+  const email = form.customerEmail.value.trim();
+  const product = productSelect.value;
+  const qty = parseInt(quantityInput.value || "0");
+  const method = form.paymentMethod.value;
+  const isValid = name && email.includes("@") && product && qty > 0 && method;
+
+  if (submitBtn) {
+    submitBtn.disabled = !isValid;
+    submitBtn.classList.toggle("opacity-50", !isValid);
+    submitBtn.classList.toggle("cursor-not-allowed", !isValid);
+  }
+}
+
+// ========== Event: Update Harga & Validasi ==========
+productSelect.addEventListener("change", () => {
+  updateTotal();
+  validateFormFields();
+});
+quantityInput.addEventListener("input", () => {
+  updateTotal();
+  validateFormFields();
+});
+form.customerName.addEventListener("input", validateFormFields);
+form.customerEmail.addEventListener("input", validateFormFields);
+document.querySelectorAll('input[name="paymentMethod"]').forEach(el =>
+  el.addEventListener("change", validateFormFields)
+);
 
 // ========== Event: Terapkan Promo ==========
 applyPromoBtn.addEventListener("click", () => {
@@ -80,14 +108,20 @@ applyPromoBtn.addEventListener("click", () => {
   }
   promoMessage.classList.remove("hidden");
   updateTotal();
+  validateFormFields();
 });
 
 // ========== Event: Submit Form ==========
 form.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  const name = form.customerName.value;
-  const email = form.customerEmail.value;
+  const name = form.customerName.value.trim();
+  const email = form.customerEmail.value.trim();
+  if (!name || !email.includes("@")) {
+    alert("Silakan masukkan nama dan email yang valid.");
+    return;
+  }
+
   const productText = productSelect.options[productSelect.selectedIndex].text;
   const paymentMethod = form.paymentMethod.value;
   const qty = parseInt(quantityInput.value);
@@ -107,6 +141,7 @@ form.addEventListener("submit", (e) => {
   promoDiscount = 0;
   promoMessage.classList.add("hidden");
   updateTotal();
+  validateFormFields();
 });
 
 // ========== Simpan Transaksi ==========
@@ -199,3 +234,4 @@ function showProgress(callback) {
 // ========== Init ==========
 renderTransactions();
 updateTotal();
+validateFormFields();
