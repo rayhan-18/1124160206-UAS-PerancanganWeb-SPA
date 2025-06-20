@@ -123,5 +123,32 @@
       </div>
     </div>
   </template>
+
+  <!-- Modal Pembayaran Berhasil -->
+  <div id="successModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 hidden">
+    <div class="bg-white dark:bg-zinc-800 p-6 rounded-xl shadow-xl w-[90%] max-w-md text-gray-800 dark:text-gray-100 animate-fade-in">
+      <div class="text-center">
+        <div class="bg-green-100 dark:bg-green-800 text-green-600 dark:text-green-300 w-16 h-16 flex items-center justify-center rounded-full mx-auto mb-4">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+        <h3 class="text-2xl font-bold text-green-600 dark:text-green-400">Pembayaran Berhasil!</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-300">Detail transaksi Anda:</p>
+        <div class="bg-gray-100 dark:bg-zinc-700 p-4 mt-4 rounded text-sm text-left space-y-1">
+          <p><strong>Nama:</strong> <span id="detailName"></span></p>
+          <p><strong>Produk:</strong> <span id="detailProduct"></span></p>
+          <p><strong>Jumlah:</strong> <span id="detailQty"></span></p>
+          <p><strong>Metode:</strong> <span id="detailMethod"></span></p>
+          <p><strong>Total:</strong> <span id="detailTotal"></span></p>
+          <p><strong>Waktu:</strong> <span id="detailTime"></span></p>
+        </div>
+        <progress id="progressBar" value="0" max="100" class="w-full mt-4 h-2 bg-gray-200 rounded overflow-hidden hidden"></progress>
+        <button id="printInvoiceBtn" class="mt-4 w-full bg-zinc-600 hover:bg-zinc-700 text-white py-2 rounded-md">🖨️ Cetak Invoice</button>
+        <button id="closeSuccessModal" class="mt-2 w-full bg-primary hover:bg-pink-700 text-white py-2 rounded-md">Tutup</button>
+      </div>
+    </div>
+  </div>
+  
 </body>
 </html>
